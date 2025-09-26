@@ -1,27 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>HUKOZ</title>
   <style>
-    body {
-      margin: 0;
-      height: 100vh; /* 화면 높이 100% */
-      display: flex;
-      justify-content: center;   /* 가로 중앙 */
-      align-items: center;       /* 세로 중앙 */
-      background-color: #EAEAEA; /* 흰색 변형 */
-      font-family: Arial, sans-serif;
+    :root{ --bg:#0B0B0B; --text:#F5F5F3; --muted:#BEBEB9; }
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Roboto,Arial,"Noto Sans",sans-serif;
+      display:flex; align-items:center; justify-content:center; text-align:center; padding:28px;
     }
-    h1 {
-      font-size: 4em;
+    h1{ margin:0 0 10px; font-size:clamp(26px,6vw,48px); letter-spacing:.3px; }
+
+    .brand{
+      margin:0 0 28px;
+      font-weight:400;
+      color:var(--muted);
+      font-size:clamp(18px,4vw,32px);
+      letter-spacing:.5px;
     }
+
+    a.cta{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      text-decoration:none; color:var(--text);
+      font-weight:500;
+      font-size:clamp(12px,2vw,16px);
+      border:none; background:none; border-radius:8px; transition:.2s ease;
+    }
+    a.cta img{
+      width:18px;
+      height:18px;
+      border-radius:10px;
+    }
+	a.cta:hover{
+	  opacity: .95;                 
+	  transform: translateY(-2px);  
+	  color: #FFFFFF;               
+	}
+	a.cta:focus{
+	  outline: 2px solid rgba(255,255,255,.35);
+	  outline-offset: 3px;
+	}
+
   </style>
 </head>
 <body>
-  <h1>HU & TAKU</h1>
+  <main>
+    <h1>WHO’S KOREA?</h1>
+    <p class="brand">HUKOZ</p>
+
+    <a class="cta" href="https://www.instagram.com/hukoz.pl" target="_blank" rel="noopener" aria-label="HUKOZ Instagram (@hukoz.pl)">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" />
+      hu&tak
+    </a>
+  </main>
 </body>
-
 </html>
-
-
