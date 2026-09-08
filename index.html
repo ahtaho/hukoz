@@ -1,62 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HUKOZ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="88BURGER — Korean & Japanese fusion takeaway. Opening soon in Wrocław, Grunwaldzki. Kuchnia fusion koreańsko-japońska na wynos. Już wkrótce.">
+  <title>88BURGER — Korean & Japanese Fusion · Wrocław</title>
+
   <style>
-    :root{ --bg:#0B0B0B; --text:#F5F5F3; --muted:#BEBEB9; }
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Inter,Roboto,Arial,"Noto Sans",sans-serif;
-      display:flex; align-items:center; justify-content:center; text-align:center; padding:28px;
-    }
-    h1{ margin:0 0 10px; font-size:clamp(26px,6vw,48px); letter-spacing:.3px; color:var(--muted);}
-
-    .brand{
-      margin:0 0 28px;
-      font-weight:400;
-      /*color:var(--muted);*/
-      font-size:clamp(18px,4vw,32px);
-      letter-spacing:.5px;
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b0b;
+      --text: #f3f3ef;
+      --muted: #a0a09b;
+      --line: #2b2b29;
+      --accent: #c8bd9e;
     }
 
-    a.cta{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      text-decoration:none; color:var(--text);
-      font-weight:500;
-      font-size:clamp(12px,2vw,16px);
-      border:none; background:none; border-radius:8px; transition:.2s ease;
+    * {
+      box-sizing: border-box;
     }
-    a.cta img{
-      width:18px;
-      height:18px;
-      border-radius:10px;
-    }
-	a.cta:hover{
-	  opacity: .95;                 
-	  transform: translateY(-2px);  
-	  color: #FFFFFF;               
-	}
-	a.cta:focus{
-	  outline: 2px solid rgba(255,255,255,.35);
-	  outline-offset: 3px;
-	}
 
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          ellipse at 50% 42%,
+          #20201d 0%,
+          #121211 35%,
+          var(--bg) 70%
+        );
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .page {
+      width: min(100%, 1800px);
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: auto;
+      padding: 38px 56px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 0;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.625rem, 8vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: 0.025em;
+      text-indent: 0.025em;
+    }
+
+    /* 88에만 주황색 적용 */
+    .brand-number {
+      color: #f34a20;
+    }
+
+    .concept {
+      margin: 28px 0 0;
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.025em;
+    }
+
+    .translation {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    .takeaway {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 0;
+      color: #c3c3bc;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      letter-spacing: 0.1em;
+    }
+
+    .divider {
+      width: 32px;
+      height: 1px;
+      margin: 36px 0;
+      background: #77776e;
+    }
+
+    .opening {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      letter-spacing: 0.1em;
+    }
+
+    .separator {
+      color: #77776e;
+    }
+
+    .location {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 24px 22px 22px;
+      }
+
+      main {
+        padding: 72px 0;
+      }
+
+      .concept {
+        margin-top: 24px;
+      }
+
+      .translation {
+        max-width: 280px;
+        font-size: 0.875rem;
+      }
+
+      .takeaway {
+        margin-top: 22px;
+        gap: 8px;
+        letter-spacing: 0.06em;
+      }
+
+      .divider {
+        margin: 30px 0;
+      }
+
+      .opening {
+        gap: 8px;
+        letter-spacing: 0.06em;
+      }
+
+      .location {
+        font-size: 0.875rem;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        text-align: center;
+      }
+    }
   </style>
 </head>
-<body>
-  <main>
-    <h1>WHO’S KOREA?</h1>
-    <p class="brand">HUKOZ</p>
 
-    <a class="cta" href="https://www.instagram.com/hukoz.pl" target="_blank" rel="noopener" aria-label="HUKOZ Instagram (@hukoz.pl)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="" />
-      hu&tak
-    </a>
-  </main>
+<body>
+  <div class="page">
+    <main>
+      <!-- 매장 이름 -->
+      <h1><span class="brand-number">88</span>BURGER</h1>
+
+      <!-- 한·일 퓨전 요리 소개 -->
+      <p class="concept">Korean &amp; Japanese Fusion</p>
+      <p class="translation" lang="pl">
+        Kuchnia fusion koreańsko-japońska.
+      </p>
+
+      <!-- 테이크아웃 안내 -->
+      <p class="takeaway">
+        <span>TAKEAWAY</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span lang="pl">NA WYNOS</span>
+      </p>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- 매장 오픈 예정 안내 -->
+      <p class="opening">
+        <span>OPENING SOON</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span lang="pl">JUŻ WKRÓTCE</span>
+      </p>
+
+      <!-- 상세주소 없이 지역만 표시 -->
+      <p class="location" lang="pl">Wrocław · Grunwaldzki</p>
+    </main>
+
+    <!-- 운영 법인 -->
+    <footer>
+      <p>© 88BURGER</p>
+      <p>Operated by HUKOZ Sp. z o.o.</p>
+    </footer>
+  </div>
 </body>
 </html>
