@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#F8F2E1">
-  <meta name="description" content="VAVALS — Rice burgers. Korean &amp; Japanese fusion takeaway. Opening soon in Wrocław, Grunwaldzki. Kuchnia fusion koreańsko-japońska na wynos. Już wkrótce.">
-  <title>VAVALS — Rice Burger · Korean &amp; Japanese Fusion · Wrocław</title>
+  <meta name="description" content="VAVALS — Korean rice burgers. Korean &amp; Japanese fusion. Rice instead of a bun. Takeaway, opening soon in Wrocław, Grunwaldzki. Kuchnia fusion koreańsko-japońska. Ryż zamiast bułki. Na wynos. Już wkrótce.">
+  <title>VAVALS — Korean Rice Burger · Wrocław</title>
   <style>
     :root {
       color-scheme: light;
@@ -86,10 +86,8 @@
       line-height: 1.6;
       letter-spacing: 0.075em;
     }
-    .brand-description span,
     .takeaway span,
     .opening span { min-width: 0; max-width: 100%; }
-    .brand-description .dash { color: var(--orange); }
     .intro { width: min(100%, 40rem); margin-top: clamp(22px, 2.5vw, 32px); }
     .concept {
       margin: 0;
@@ -106,6 +104,19 @@
       line-height: 1.65;
       text-wrap: balance;
     }
+    .rice-note {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.6;
+      text-wrap: balance;
+    }
+    .rice-note span { min-width: 0; max-width: 100%; }
     .takeaway {
       display: flex;
       flex-wrap: wrap;
@@ -170,7 +181,7 @@
     }
     @media (max-width: 360px) {
       .brand-description, .opening { flex-direction: column; align-items: center; }
-      .brand-description .dash, .opening .separator { display: none; }
+      .opening .separator { display: none; }
       .brand-description { gap: 1px; }
       .opening { padding-inline: 20px; border-radius: 18px; }
     }
@@ -182,6 +193,41 @@
       .takeaway { margin-top: 14px; }
       .divider { margin: 18px 0; }
     }
+
+    /* 데스크톱에서는 중앙 콘텐츠를 더 크게 표시합니다. */
+    @media (min-width: 1024px) and (min-height: 600px) {
+      main { padding-top: clamp(16px, 2vh, 32px); padding-bottom: clamp(28px, 3vh, 44px); }
+      h1 { width: min(100%, clamp(440px, 36vw, 640px)); }
+      .brand-description { font-size: clamp(1.125rem, 0.875rem + 0.4vw, 1.375rem); }
+      .intro { width: min(100%, 52rem); }
+      .concept { font-size: clamp(1.375rem, 1.125rem + 0.4vw, 1.625rem); }
+      .translation { font-size: clamp(1.0625rem, 0.875rem + 0.3vw, 1.25rem); }
+      .rice-note { font-size: clamp(1rem, 0.875rem + 0.25vw, 1.125rem); }
+      .takeaway, .opening, .location { font-size: clamp(1rem, 0.875rem + 0.25vw, 1.1875rem); }
+      .opening { padding: 12px 28px; }
+      footer { font-size: 0.9375rem; }
+    }
+
+    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. */
+    footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 8px clamp(8px, 2vw, 24px);
+      text-align: initial;
+    }
+    footer .footer-brand { justify-self: start; text-align: left; }
+    footer .footer-korean { justify-self: center; text-align: center; }
+    footer p:last-child { justify-self: end; text-align: right; }
+    .footer-korean {
+      white-space: nowrap;
+      color: var(--ink);
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
   </style>
 </head>
 <body>
@@ -192,30 +238,30 @@
         <img class="brand-logo" src="VAVALS_MASTER_PRIMARY.svg" alt="VAVALS" width="1000" height="1000" fetchpriority="high">
       </h1>
 
-      <!-- 로고 아래 설명 -->
-      <p class="brand-description">
-        <span>RICE BURGER</span>
-        <span class="dash">-</span>
-        <span>KOR x JPN</span>
-      </p>
+      <!-- 제품 소개 -->
+      <p class="brand-description">KOREAN RICE BURGER</p>
 
       <div class="intro">
-        <p class="concept">Korean &amp; Japanese Fusion</p>
-        <p class="translation" lang="pl">Kuchnia fusion koreańsko-japońska.</p>
+        <p class="concept" lang="pl">Kuchnia fusion koreańsko-japońska.</p>
+        <p class="translation" lang="en">Korean &amp; Japanese Fusion</p>
+        <p class="rice-note">
+          <span lang="pl">Ryż zamiast bułki.</span>
+          <span lang="en">Rice instead of a bun.</span>
+        </p>
       </div>
 
       <p class="takeaway">
-        <span>TAKEAWAY</span>
-        <span class="separator" aria-hidden="true">·</span>
         <span lang="pl">NA WYNOS</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span lang="en">TAKEAWAY</span>
       </p>
 
       <div class="divider" aria-hidden="true"></div>
 
       <p class="opening">
-        <span>OPENING SOON</span>
-        <span class="separator" aria-hidden="true">·</span>
         <span lang="pl">JUŻ WKRÓTCE</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span lang="en">OPENING SOON</span>
       </p>
       <!-- 상세주소는 공개하지 않고 지역만 표시합니다. -->
       <p class="location" lang="pl">Wrocław · Grunwaldzki</p>
@@ -223,6 +269,7 @@
 
     <footer>
       <p class="footer-brand">© VAVALS</p>
+      <p class="footer-korean" lang="ko">밥알스</p>
       <p>Operated by HUKOZ Sp. z o.o.</p>
     </footer>
   </div>
