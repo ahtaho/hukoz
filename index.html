@@ -104,26 +104,13 @@
       line-height: 1.65;
       text-wrap: balance;
     }
-    .rice-note {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      margin: 14px 0 0;
-      color: var(--muted);
-      font-size: 0.875rem;
-      font-weight: 400;
-      line-height: 1.6;
-      text-wrap: balance;
-    }
-    .rice-note span { min-width: 0; max-width: 100%; }
     .takeaway {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       gap: 4px 0.65em;
-      margin: clamp(16px, 2vw, 22px) 0 0;
+      margin: clamp(26px, 3.2vw, 36px) 0 0;
       color: var(--green);
       font-size: clamp(0.875rem, 0.825rem + 0.2vw, 1rem);
       font-weight: 600;
@@ -157,27 +144,21 @@
       letter-spacing: 0.025em;
       text-wrap: balance;
     }
-    footer {
-      display: flex;
-      flex-shrink: 0;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px 24px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.8125rem;
-      line-height: 1.65;
-    }
-    footer p { min-width: 0; max-width: 100%; margin: 0; }
-    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
-
     /* 휴대폰/확대 화면: 읽기 쉬운 글씨 크기는 유지하고 줄바꿈 */
     @media (max-width: 600px) {
       h1 { width: min(100%, 330px); }
       .intro { width: min(100%, 30rem); }
-      footer { flex-direction: column; justify-content: center; text-align: center; gap: 4px; }
+      footer {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        row-gap: 6px;
+      }
+      footer .footer-brand,
+      footer .footer-korean,
+      footer p:last-child {
+        justify-self: center;
+        text-align: center;
+      }
     }
     @media (max-width: 360px) {
       .brand-description, .opening { flex-direction: column; align-items: center; }
@@ -202,7 +183,6 @@
       .intro { width: min(100%, 52rem); }
       .concept { font-size: clamp(1.375rem, 1.125rem + 0.4vw, 1.625rem); }
       .translation { font-size: clamp(1.0625rem, 0.875rem + 0.3vw, 1.25rem); }
-      .rice-note { font-size: clamp(1rem, 0.875rem + 0.25vw, 1.125rem); }
       .takeaway, .opening, .location { font-size: clamp(1rem, 0.875rem + 0.25vw, 1.1875rem); }
       .opening { padding: 12px 28px; }
       footer { font-size: 0.9375rem; }
@@ -211,11 +191,19 @@
     /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. */
     footer {
       display: grid;
+      flex-shrink: 0;
       grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       align-items: center;
       gap: 8px clamp(8px, 2vw, 24px);
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8125rem;
+      line-height: 1.65;
       text-align: initial;
     }
+    footer p { min-width: 0; max-width: 100%; margin: 0; }
+    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
     footer .footer-brand { justify-self: start; text-align: left; }
     footer .footer-korean { justify-self: center; text-align: center; }
     footer p:last-child { justify-self: end; text-align: right; }
@@ -244,10 +232,6 @@
       <div class="intro">
         <p class="concept" lang="pl">Kuchnia fusion koreańsko-japońska.</p>
         <p class="translation" lang="en">Korean &amp; Japanese Fusion</p>
-        <p class="rice-note">
-          <span lang="pl">Ryż zamiast bułki.</span>
-          <span lang="en">Rice instead of a bun.</span>
-        </p>
       </div>
 
       <p class="takeaway">
