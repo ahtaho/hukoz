@@ -2,215 +2,208 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b0b">
-  <meta name="description" content="88BURGER — Korean & Japanese fusion takeaway. Opening soon in Wrocław, Grunwaldzki. Kuchnia fusion koreańsko-japońska na wynos. Już wkrótce.">
-  <title>88BURGER — Korean & Japanese Fusion · Wrocław</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#F8F2E1">
+  <meta name="description" content="VAVALS — Rice burgers. Korean &amp; Japanese fusion takeaway. Opening soon in Wrocław, Grunwaldzki. Kuchnia fusion koreańsko-japońska na wynos. Już wkrótce.">
+  <title>VAVALS — Rice Burger · Korean &amp; Japanese Fusion · Wrocław</title>
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #0b0b0b;
-      --text: #f3f3ef;
-      --muted: #a0a09b;
-      --line: #2b2b29;
-      --accent: #c8bd9e;
+      color-scheme: light;
+      --paper: #F8F2E1;
+      --ink: #3A2A21;
+      --muted: #776859;
+      --orange: #F34A20;
+      --green: #1C4C1E;
+      --line: #3A2A2126;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
       margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(
-          ellipse at 50% 42%,
-          #20201d 0%,
-          #121211 35%,
-          var(--bg) 70%
-        );
+      background: var(--paper);
+      color: var(--ink);
       font-family: "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-wrap: anywhere;
     }
+    ::selection { color: var(--paper); background: var(--green); }
 
-    ::selection {
-      background: var(--text);
-      color: var(--bg);
-    }
-
+    /* 화면 폭에 맞는 여백 + 휴대폰 노치/홈 바 안전 영역 */
     .page {
-      width: min(100%, 1800px);
+      --gutter: clamp(16px, 4vw, 64px);
+      width: min(100%, 1600px);
       min-height: 100vh;
       min-height: 100svh;
-      margin: auto;
-      padding: 38px 56px 26px;
+      margin-inline: auto;
+      padding: 24px var(--gutter) 20px;
+      padding-top: max(20px, env(safe-area-inset-top, 0px));
+      padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+      padding-bottom: max(20px, env(safe-area-inset-bottom, 0px));
+      padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
       display: flex;
       flex-direction: column;
     }
-
     main {
-      flex: 1;
+      flex: 1 0 auto;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 90px 0;
+      padding: clamp(16px, 4vh, 52px) 0 clamp(28px, 5vh, 60px);
       text-align: center;
     }
+    main > * { flex-shrink: 0; min-width: 0; max-width: 100%; }
 
+    /* 로고 비율 유지. SVG 원본의 바깥 여백만 줄입니다. */
     h1 {
+      position: relative;
       margin: 0;
-      font-size: clamp(2.625rem, 8vw, 5.5rem);
-      font-weight: 400;
-      line-height: 1.2;
-      letter-spacing: 0.025em;
-      text-indent: 0.025em;
+      width: min(100%, clamp(260px, 34vw, 480px));
+      aspect-ratio: 1000 / 780;
+      overflow: hidden;
+      line-height: 0;
     }
-
-    /* 88에만 주황색 적용 */
-    .brand-number {
-      color: #f34a20;
+    .brand-logo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: auto;
+      transform: translateY(-9%);
     }
-
+    .brand-description {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 4px 0.55em;
+      margin: clamp(8px, 1.3vw, 14px) 0 0;
+      font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1.125rem);
+      font-weight: 600;
+      line-height: 1.6;
+      letter-spacing: 0.075em;
+    }
+    .brand-description span,
+    .takeaway span,
+    .opening span { min-width: 0; max-width: 100%; }
+    .brand-description .dash { color: var(--orange); }
+    .intro { width: min(100%, 40rem); margin-top: clamp(22px, 2.5vw, 32px); }
     .concept {
-      margin: 28px 0 0;
-      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      margin: 0;
+      font-size: clamp(1rem, 0.925rem + 0.3vw, 1.25rem);
       font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: 0.025em;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      text-wrap: balance;
     }
-
     .translation {
-      margin: 9px 0 0;
+      margin: 5px 0 0;
       color: var(--muted);
-      font-size: 0.9375rem;
+      font-size: clamp(0.875rem, 0.825rem + 0.2vw, 1rem);
       line-height: 1.65;
+      text-wrap: balance;
     }
-
     .takeaway {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 24px 0 0;
-      color: #c3c3bc;
-      font-size: 0.875rem;
+      justify-content: center;
+      align-items: center;
+      gap: 4px 0.65em;
+      margin: clamp(16px, 2vw, 22px) 0 0;
+      color: var(--green);
+      font-size: clamp(0.875rem, 0.825rem + 0.2vw, 1rem);
+      font-weight: 600;
       line-height: 1.6;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
     }
-
-    .divider {
-      width: 32px;
-      height: 1px;
-      margin: 36px 0;
-      background: #77776e;
-    }
-
+    .separator { color: var(--muted); font-weight: 400; }
+    .divider { width: 36px; height: 1px; margin: clamp(20px, 2.5vw, 30px) 0; background: var(--line); }
     .opening {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      gap: 4px 0.65em;
       margin: 0;
-      color: var(--accent);
-      font-size: 0.875rem;
+      padding: 10px clamp(12px, 2vw, 24px);
+      border: 1px solid var(--orange);
+      border-radius: 24px;
+      color: var(--ink);
+      font-size: clamp(0.875rem, 0.825rem + 0.2vw, 1rem);
+      font-weight: 500;
       line-height: 1.6;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.035em;
     }
-
-    .separator {
-      color: #77776e;
-    }
-
+    .opening .separator { color: var(--orange); }
     .location {
-      margin: 16px 0 0;
+      margin: 12px 0 0;
       color: var(--muted);
-      font-size: 0.9375rem;
+      font-size: clamp(0.875rem, 0.825rem + 0.2vw, 1rem);
       line-height: 1.6;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.025em;
+      text-wrap: balance;
     }
-
     footer {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-shrink: 0;
       flex-wrap: wrap;
-      gap: 10px 24px;
-      padding-top: 22px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px 24px;
+      padding-top: 18px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 0.8125rem;
-      line-height: 1.6;
+      line-height: 1.65;
     }
+    footer p { min-width: 0; max-width: 100%; margin: 0; }
+    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
 
-    footer p {
-      margin: 0;
+    /* 휴대폰/확대 화면: 읽기 쉬운 글씨 크기는 유지하고 줄바꿈 */
+    @media (max-width: 600px) {
+      h1 { width: min(100%, 330px); }
+      .intro { width: min(100%, 30rem); }
+      footer { flex-direction: column; justify-content: center; text-align: center; gap: 4px; }
     }
-
-    @media (max-width: 640px) {
-      .page {
-        padding: 24px 22px 22px;
-      }
-
-      main {
-        padding: 72px 0;
-      }
-
-      .concept {
-        margin-top: 24px;
-      }
-
-      .translation {
-        max-width: 280px;
-        font-size: 0.875rem;
-      }
-
-      .takeaway {
-        margin-top: 22px;
-        gap: 8px;
-        letter-spacing: 0.06em;
-      }
-
-      .divider {
-        margin: 30px 0;
-      }
-
-      .opening {
-        gap: 8px;
-        letter-spacing: 0.06em;
-      }
-
-      .location {
-        font-size: 0.875rem;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: center;
-        padding-top: 20px;
-        text-align: center;
-      }
+    @media (max-width: 360px) {
+      .brand-description, .opening { flex-direction: column; align-items: center; }
+      .brand-description .dash, .opening .separator { display: none; }
+      .brand-description { gap: 1px; }
+      .opening { padding-inline: 20px; border-radius: 18px; }
+    }
+    /* 가로 휴대폰/높이가 낮은 창: 여백과 로고를 줄이고 필요 시 세로 스크롤 */
+    @media (max-height: 560px) {
+      main { padding-top: 8px; padding-bottom: 28px; }
+      h1 { width: min(100%, 240px); }
+      .intro { margin-top: 18px; }
+      .takeaway { margin-top: 14px; }
+      .divider { margin: 18px 0; }
     }
   </style>
 </head>
-
 <body>
   <div class="page">
     <main>
-      <!-- 매장 이름 -->
-      <h1><span class="brand-number">88</span>BURGER</h1>
+      <!-- SVG 파일을 index.html과 같은 폴더에 넣어주세요. -->
+      <h1>
+        <img class="brand-logo" src="VAVALS_MASTER_PRIMARY.svg" alt="VAVALS" width="1000" height="1000" fetchpriority="high">
+      </h1>
 
-      <!-- 한·일 퓨전 요리 소개 -->
-      <p class="concept">Korean &amp; Japanese Fusion</p>
-      <p class="translation" lang="pl">
-        Kuchnia fusion koreańsko-japońska.
+      <!-- 로고 아래 설명 -->
+      <p class="brand-description">
+        <span>RICE BURGER</span>
+        <span class="dash">-</span>
+        <span>KOR x JPN</span>
       </p>
 
-      <!-- 테이크아웃 안내 -->
+      <div class="intro">
+        <p class="concept">Korean &amp; Japanese Fusion</p>
+        <p class="translation" lang="pl">Kuchnia fusion koreańsko-japońska.</p>
+      </div>
+
       <p class="takeaway">
         <span>TAKEAWAY</span>
         <span class="separator" aria-hidden="true">·</span>
@@ -219,20 +212,17 @@
 
       <div class="divider" aria-hidden="true"></div>
 
-      <!-- 매장 오픈 예정 안내 -->
       <p class="opening">
         <span>OPENING SOON</span>
         <span class="separator" aria-hidden="true">·</span>
         <span lang="pl">JUŻ WKRÓTCE</span>
       </p>
-
-      <!-- 상세주소 없이 지역만 표시 -->
+      <!-- 상세주소는 공개하지 않고 지역만 표시합니다. -->
       <p class="location" lang="pl">Wrocław · Grunwaldzki</p>
     </main>
 
-    <!-- 운영 법인 -->
     <footer>
-      <p>© 88BURGER</p>
+      <p class="footer-brand">© VAVALS</p>
       <p>Operated by HUKOZ Sp. z o.o.</p>
     </footer>
   </div>
