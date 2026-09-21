@@ -144,6 +144,35 @@
       letter-spacing: 0.025em;
       text-wrap: balance;
     }
+    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. */
+    footer {
+      display: grid;
+      flex-shrink: 0;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 8px clamp(8px, 2vw, 24px);
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.8125rem;
+      line-height: 1.65;
+      text-align: initial;
+    }
+    footer p { min-width: 0; max-width: 100%; margin: 0; }
+    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
+    footer .footer-brand { justify-self: start; text-align: left; }
+    footer .footer-korean { justify-self: center; text-align: center; }
+    footer p:last-child { justify-self: end; text-align: right; }
+    .footer-korean {
+      white-space: nowrap;
+      color: var(--ink);
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
     /* 휴대폰/확대 화면: 읽기 쉬운 글씨 크기는 유지하고 줄바꿈 */
     @media (max-width: 600px) {
       h1 { width: min(100%, 330px); }
@@ -186,35 +215,6 @@
       .takeaway, .opening, .location { font-size: clamp(1rem, 0.875rem + 0.25vw, 1.1875rem); }
       .opening { padding: 12px 28px; }
       footer { font-size: 0.9375rem; }
-    }
-
-    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. */
-    footer {
-      display: grid;
-      flex-shrink: 0;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      align-items: center;
-      gap: 8px clamp(8px, 2vw, 24px);
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.8125rem;
-      line-height: 1.65;
-      text-align: initial;
-    }
-    footer p { min-width: 0; max-width: 100%; margin: 0; }
-    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
-    footer .footer-brand { justify-self: start; text-align: left; }
-    footer .footer-korean { justify-self: center; text-align: center; }
-    footer p:last-child { justify-self: end; text-align: right; }
-    .footer-korean {
-      white-space: nowrap;
-      color: var(--ink);
-      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: 0.04em;
     }
   </style>
 </head>
