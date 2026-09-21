@@ -144,14 +144,14 @@
       letter-spacing: 0.025em;
       text-wrap: balance;
     }
-    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. 폭이 좁아지면 줄바꿈 대신 글씨 크기를 줄여 한 줄을 유지합니다. */
+    /* 왼쪽: 저작권 + 한글 이름을 함께 묶고, 오른쪽: 운영 법인명. 폭이 좁아지면 줄바꿈 대신 글씨 크기를 줄여 한 줄을 유지합니다. */
     footer {
       display: flex;
       flex-shrink: 0;
       flex-wrap: nowrap;
       justify-content: space-between;
-      align-items: center;
-      gap: clamp(6px, 2vw, 24px);
+      align-items: baseline;
+      gap: clamp(8px, 3vw, 32px);
       padding-top: 18px;
       border-top: 1px solid var(--line);
       color: var(--muted);
@@ -165,33 +165,36 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .footer-brand { color: var(--ink); letter-spacing: 0.07em; flex-shrink: 0; }
-    .footer-korean {
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
       color: var(--ink);
-      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.07em;
       flex-shrink: 0;
     }
+    .footer-korean {
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+      font-size: 1.05em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+    .footer-operator { text-align: right; }
 
     /* 휴대폰/확대 화면: 한 줄 유지를 위해 글씨 크기와 간격을 화면 폭에 맞춰 줄입니다 */
     @media (max-width: 600px) {
       h1 { width: min(100%, 330px); }
       .intro { width: min(100%, 30rem); }
-      footer { font-size: 0.75rem; gap: clamp(4px, 2vw, 14px); }
+      footer { font-size: 0.75rem; gap: clamp(6px, 3vw, 20px); }
       .footer-brand { letter-spacing: 0.04em; }
-      .footer-korean { font-size: 0.875rem; letter-spacing: 0.02em; }
     }
     @media (max-width: 360px) {
       .brand-description, .opening { flex-direction: column; align-items: center; }
       .opening .separator { display: none; }
       .brand-description { gap: 1px; }
       .opening { padding-inline: 20px; border-radius: 18px; }
-      footer { font-size: 0.6875rem; gap: 4px; }
+      footer { font-size: 0.6875rem; gap: 6px; }
       .footer-brand { letter-spacing: 0.02em; }
-      .footer-korean { font-size: 0.8125rem; }
     }
     /* 가로 휴대폰/높이가 낮은 창: 여백과 로고를 줄이고 필요 시 세로 스크롤 */
     @media (max-height: 560px) {
@@ -250,9 +253,12 @@
     </main>
 
     <footer>
-      <p class="footer-brand">© VAVALS</p>
-      <p class="footer-korean" lang="ko">밥알스</p>
-      <p>Operated by HUKOZ Sp. z o.o.</p>
+      <p class="footer-brand">
+        <span>© VAVALS</span>
+        <span class="separator" aria-hidden="true">·</span>
+        <span class="footer-korean" lang="ko">밥알스</span>
+      </p>
+      <p class="footer-operator">Operated by HUKOZ Sp. z o.o.</p>
     </footer>
   </div>
 </body>
