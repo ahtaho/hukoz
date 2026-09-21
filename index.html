@@ -144,56 +144,54 @@
       letter-spacing: 0.025em;
       text-wrap: balance;
     }
-    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. */
+    /* 양끝 문구 사이, 페이지의 정확한 가운데에 한글 이름을 배치합니다. 폭이 좁아지면 줄바꿈 대신 글씨 크기를 줄여 한 줄을 유지합니다. */
     footer {
-      display: grid;
+      display: flex;
       flex-shrink: 0;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      flex-wrap: nowrap;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px clamp(8px, 2vw, 24px);
+      gap: clamp(6px, 2vw, 24px);
       padding-top: 18px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 0.8125rem;
       line-height: 1.65;
-      text-align: initial;
     }
-    footer p { min-width: 0; max-width: 100%; margin: 0; }
-    .footer-brand { color: var(--ink); letter-spacing: 0.07em; }
-    footer .footer-brand { justify-self: start; text-align: left; }
-    footer .footer-korean { justify-self: center; text-align: center; }
-    footer p:last-child { justify-self: end; text-align: right; }
-    .footer-korean {
+    footer p {
+      min-width: 0;
+      margin: 0;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .footer-brand { color: var(--ink); letter-spacing: 0.07em; flex-shrink: 0; }
+    .footer-korean {
       color: var(--ink);
       font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
       font-size: 1rem;
       font-weight: 400;
       line-height: 1.5;
       letter-spacing: 0.04em;
+      flex-shrink: 0;
     }
 
-    /* 휴대폰/확대 화면: 읽기 쉬운 글씨 크기는 유지하고 줄바꿈 */
+    /* 휴대폰/확대 화면: 한 줄 유지를 위해 글씨 크기와 간격을 화면 폭에 맞춰 줄입니다 */
     @media (max-width: 600px) {
       h1 { width: min(100%, 330px); }
       .intro { width: min(100%, 30rem); }
-      footer {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        row-gap: 6px;
-      }
-      footer .footer-brand,
-      footer .footer-korean,
-      footer p:last-child {
-        justify-self: center;
-        text-align: center;
-      }
+      footer { font-size: 0.75rem; gap: clamp(4px, 2vw, 14px); }
+      .footer-brand { letter-spacing: 0.04em; }
+      .footer-korean { font-size: 0.875rem; letter-spacing: 0.02em; }
     }
     @media (max-width: 360px) {
       .brand-description, .opening { flex-direction: column; align-items: center; }
       .opening .separator { display: none; }
       .brand-description { gap: 1px; }
       .opening { padding-inline: 20px; border-radius: 18px; }
+      footer { font-size: 0.6875rem; gap: 4px; }
+      .footer-brand { letter-spacing: 0.02em; }
+      .footer-korean { font-size: 0.8125rem; }
     }
     /* 가로 휴대폰/높이가 낮은 창: 여백과 로고를 줄이고 필요 시 세로 스크롤 */
     @media (max-height: 560px) {
