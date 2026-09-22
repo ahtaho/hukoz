@@ -446,6 +446,22 @@
         font-weight: 400;
         line-height: 1;
       }
+	  
+	html.fitted,
+	html.fitted body {
+	height: auto;
+	min-height: 100%;
+	overflow: visible;
+	overscroll-behavior-y: auto;
+	}
+
+	html.fitted .viewport {
+	position: relative;
+	inset: auto;
+	height: 100vh;
+	height: 100dvh;
+	overflow: visible;
+	}
     </style>
   </head>
   <body>
