@@ -182,10 +182,11 @@
       .opening {
         margin: 0;
         padding: 10px 20px;
-        border: 1px solid var(--orange);
-        border-radius: 4px;
+        border: 1px solid transparent;
+        border-radius: 30px;
         font-weight: 400;
         letter-spacing: 0.025em;
+        box-shadow:none;
       }
 
       .opening span,
@@ -206,6 +207,81 @@
 
       .opening .separator {
         color: var(--orange);
+      }
+
+      @keyframes neonPulse {
+        0%, 100% {
+           border-color: transparent;
+		   box-shadow: none;
+        }
+
+        50% {
+          border-color: var(--orange);
+          box-shadow:
+            0 0 5px rgba(243, 74, 32, 0.52),
+            0 0 12px rgba(243, 74, 32, 0.24),
+            0 0 20px rgba(243, 74, 32, 0.10);
+        }
+      }
+
+      /* 첫 진입 시 브랜드 요소를 순서대로 부드럽게 보여줍니다. */
+      @keyframes entranceFadeUp {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      h1 {
+        opacity: 1;
+        animation: none;
+        transform: none;
+      }
+
+      .brand-description,
+      .intro,
+      .divider,
+      .takeaway,
+      .opening,
+      .location,
+      footer {
+        opacity: 0;
+        animation: entranceFadeUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .brand-description {
+        animation-delay: 180ms;
+      }
+
+      .intro {
+        animation-delay: 300ms;
+      }
+
+      .divider {
+        animation-delay: 400ms;
+      }
+
+      .takeaway {
+        animation-delay: 490ms;
+      }
+
+      .opening {
+        animation:
+          entranceFadeUp 760ms cubic-bezier(0.22, 1, 0.36, 1) 600ms both,
+          neonPulse 3.2s ease-in-out 2s infinite;
+      }
+
+      .location {
+        animation-delay: 720ms;
+      }
+
+      footer {
+        animation-delay: 850ms;
       }
 
       .location {
@@ -474,6 +550,18 @@
       @media (prefers-reduced-motion: reduce) {
         .viewport.is-bouncing {
           transition: none;
+        }
+
+        .brand-description,
+        .intro,
+        .divider,
+        .takeaway,
+        .opening,
+        .location,
+        footer {
+          opacity: 1;
+          animation: none;
+          transform: none;
         }
       }
 
