@@ -629,17 +629,22 @@
           const atTop = scrollTop <= 0;
           const atBottom = scrollTop >= maxScroll - 1;
 
-          // 위 끝에서 아래로 당기거나, 아래 끝에서 위로 당길 때만 동작.
-          if ((deltaY > 0 && atTop) || (deltaY < 0 && atBottom)) {
+          // 상단에서 아래로 당기는 제스처는 브라우저 기본 동작에 맡깁니다.
+          // (iOS/Android의 Pull-to-Refresh를 막지 않기 위해 preventDefault 하지 않음)
+          if (deltaY > 0 && atTop) {
+            return;
+          }
+
+          // 하단에서 위로 더 당길 때만 커스텀 바운스를 적용합니다.
+          if (deltaY < 0 && atBottom) {
             event.preventDefault();
 
-            const direction = deltaY < 0 ? -1 : 1;
             const distance = Math.min(
               MAX_BOUNCE,
               Math.abs(deltaY) * RESISTANCE
             );
 
-            setBounce(direction * distance);
+            setBounce(-distance);
           }
         }, { passive: false });
 
