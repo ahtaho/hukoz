@@ -6,6 +6,16 @@
     <meta name="theme-color" content="#F8F2E1">
     <meta name="description" content="VAVALS — Korean rice burgers. Korean &amp; Japanese fusion burgers. Takeaway, opening soon in Wrocław, Grunwaldzki. Burgery fusion koreańsko-japońskie. Na wynos. Już wkrótce.">
     <title>VAVALS - Korean Rice Burger</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G1MDY94D8M"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G1MDY94D8M');
+    </script>
     <style>
       :root {
         color-scheme: light;
@@ -560,8 +570,6 @@
         window.addEventListener('resize', scheduleFit);
         window.addEventListener('orientationchange', scheduleFit);
         window.addEventListener('load', scheduleFit);
-        if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleFit);
-        if (window.ResizeObserver) new ResizeObserver(scheduleFit).observe(viewport);
         if (document.fonts) document.fonts.ready.then(scheduleFit);
 
         // 모바일 브라우저마다 다른 네이티브 overscroll 대신,
