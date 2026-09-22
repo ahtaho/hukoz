@@ -462,6 +462,23 @@
 	height: 100dvh;
 	overflow: visible;
 	}
+
+      /* 모바일 공통 탄성 바운스 효과 */
+      .viewport {
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .viewport.is-bouncing {
+        transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .viewport.is-bouncing {
+          transition: none;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -558,6 +575,76 @@
         if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleFit);
         if (window.ResizeObserver) new ResizeObserver(scheduleFit).observe(viewport);
         if (document.fonts) document.fonts.ready.then(scheduleFit);
+
+        // 모바일 브라우저마다 다른 네이티브 overscroll 대신,
+        // 손가락 움직임에 맞춰 화면을 조금 끌었다가 부드럽게 복귀시킵니다.
+        let touchStartY = 0;
+        let touchStartX = 0;
+        let bounceOffset = 0;
+        let trackingBounce = false;
+
+        const MAX_BOUNCE = 22;
+        const RESISTANCE = 0.16;
+
+        function setBounce(y) {
+          bounceOffset = y;
+          viewport.classList.remove('is-bouncing');
+          viewport.style.transform = 'translate3d(0,' + y + 'px,0)';
+        }
+
+        function releaseBounce() {
+          if (!trackingBounce && bounceOffset === 0) return;
+          trackingBounce = false;
+          bounceOffset = 0;
+          viewport.classList.add('is-bouncing');
+          viewport.style.transform = 'translate3d(0,0,0)';
+        }
+
+        viewport.addEventListener('touchstart', (event) => {
+          if (event.touches.length !== 1) return;
+
+          const touch = event.touches[0];
+          touchStartY = touch.clientY;
+          touchStartX = touch.clientX;
+          trackingBounce = true;
+          viewport.classList.remove('is-bouncing');
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', (event) => {
+          if (!trackingBounce || event.touches.length !== 1) return;
+
+          const touch = event.touches[0];
+          const deltaY = touch.clientY - touchStartY;
+          const deltaX = touch.clientX - touchStartX;
+
+          // 가로 제스처는 건드리지 않습니다.
+          if (Math.abs(deltaX) > Math.abs(deltaY)) return;
+
+          const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+          const maxScroll = Math.max(
+            0,
+            document.documentElement.scrollHeight - window.innerHeight
+          );
+
+          const atTop = scrollTop <= 0;
+          const atBottom = scrollTop >= maxScroll - 1;
+
+          // 위 끝에서 아래로 당기거나, 아래 끝에서 위로 당길 때만 동작.
+          if ((deltaY > 0 && atTop) || (deltaY < 0 && atBottom)) {
+            event.preventDefault();
+
+            const direction = deltaY < 0 ? -1 : 1;
+            const distance = Math.min(
+              MAX_BOUNCE,
+              Math.abs(deltaY) * RESISTANCE
+            );
+
+            setBounce(direction * distance);
+          }
+        }, { passive: false });
+
+        viewport.addEventListener('touchend', releaseBounce, { passive: true });
+        viewport.addEventListener('touchcancel', releaseBounce, { passive: true });
       })();
     </script>
   </body>
